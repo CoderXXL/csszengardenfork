@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body.body-wrapper {
+  max-width: 1400px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 300px 1fr 420px;
+}
+body.body-wrapper header {
+  grid-row-start: 1;
+  grid-row-end: 1;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  width: 100%;
+  height: 300px;
+}
+body.body-wrapper header div.logo-wrapper > img {
+  width: 125px;
+  height: 125px;
+}
+body.body-wrapper div.page-container {
+  padding-right: 30%;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+body.body-wrapper div.sidebar {
+  grid-row-start: 1;
+  grid-row-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 2;
+}
+body.body-wrapper footer {
+  grid-row-start: 3;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+/*# sourceMappingURL=styles.css.map */
