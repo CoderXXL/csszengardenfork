@@ -1,42 +1,179 @@
 $header-height: 300px;
 $top-footer-height: 300px;
 $bottom-footer-height: 120px;
-$footer-height: $top-footer-height + $bottom-footer-height;
+$footer-height: $top-footer-height+$bottom-footer-height;
+$sidebar-width: 30%;
+$wrapper-width: 1400px;
+$green-background-color: rgba(138, 188, 159, 0.5);
+
+@mixin full-width() {
+    width: 100vw;
+
+    @media only screen and (min-width: 1400px) {
+        margin-left: calc(((100vw - #{$wrapper-width}) / 2) * -1);
+    }
+}
+
+@mixin align($type: horizontal, $justifyContent: center, $alignItems: center) {
+    display: flex;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+
+    @if $type=='vertical' {
+        flex-direction: column;
+    }
+
+    @if $type=='horizontal' {
+        flex-direction: row;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        margin: 0;
+        padding: 0;
+        font-family: 'Julius Sans One';
+        color: rgb(46, 72, 76);
+        font-weight: 400;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    h2 {
+        font-size: 25px;
+    }
+
+    h3 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin: 12px 0;
+        font-size: 16px;
+        font-family: 'Libre Baskerville';
+        padding: 0;
+        color: rgb(50, 80, 80);
+        line-height: 2;
+    }
+
+    .green-section {
+        a {
+            color: #0d8ba1;
+        }
+    }
+
+    a {
+        transition: color .3s;
+        text-transform: uppercase;
+        color: #325050;
+        text-decoration-style: dotted;
+
+        &:hover {
+            color: #49968e;
+        }
+    }
 }
 
 body.body-wrapper {
-    max-width: 1400px;
+    max-width: $wrapper-width;
     margin: auto;
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 70% $sidebar-width;
     grid-template-rows: $header-height 1fr $footer-height;
 
     header {
+        @include full-width();
         grid-row-start: 1;
         grid-row-end: 1;
         grid-column-start: 1;
         grid-column-end: 3;
-        width: 100%;
         height: $header-height;
+        background-image: url(../images/nav.jpg);
+        background-position: center center;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+
+        .header-container {
+            width: (100% - $sidebar-width);
+            @include align();
+
+            .logo-wrapper {
+                margin-right: 30px;
+            }
+
+            .page-title {
+                color: white;
+                padding-bottom: 10px;
+                text-transform: uppercase;
+            }
+
+            .page-subtitle {
+                color: rgba(255, 255, 255, 0.7);
+                font-family: 'Julius Sans One';
+                font-style: italic;
+            }
+        }
 
         div.logo-wrapper {
             > img {
                 width: 125px;
-                height: 125px;
+                height: auto;
             }
         }
     }
 
     div.page-container {
-        padding-right: 30%;
+        padding-right: $sidebar-width + 10%;
         grid-row-start: 2;
         grid-row-end: 2;
         grid-column-start: 1;
         grid-column-end: 3;
+
+        section {
+            position: relative;
+
+
+            &.green-section {
+                padding: 30px 0;
+
+                > div.background-container {
+                    @include full-width();
+                    position: absolute;
+                    top: 0;
+                    z-index: -1;
+                    height: 100%;
+                    background-color: $green-background-color;
+                    background-image: url(../images/green-back.png);
+                    background-attachment: fixed;
+                }
+            }
+
+            article,
+            .prequel {
+                padding: 10px;
+                margin: 20px 0;
+            }
+        }
+
+        .prequel {
+            margin-top: 50px;
+        }
     }
 
     div.sidebar {
@@ -44,12 +181,97 @@ body.body-wrapper {
         grid-row-end: 4;
         grid-column-start: 2;
         grid-column-end: 2;
+        background-color: rgb(182, 212, 183, .2);
+
+        .top-section {
+            @include align();
+
+            height: $header-height;
+            padding: 40px;
+
+            span {
+                @include align();
+
+                width: 100%;
+                min-height: 70px;
+                background: rgba(255,255,255,0.1);
+                text-decoration: none;
+                font-family: 'Julius Sans One', sans-serif;
+                text-transform: uppercase;
+                color: white;
+                font-size: 19px;
+                border-radius: 3px;
+
+                &:nth-child(2) {
+                    width: 30%;
+                    margin-left: 2px;
+                }
+            }
+        }
+
+        .authors {
+            ul {
+                list-style: none;
+
+                li {
+                    &:not(:first-child) {
+                        border-top: solid 1px #d9e3dc;
+                    }
+
+                    font-style: italic;
+                    color: #c0cac3;
+                    padding: 20px 10px;
+
+                    .author-title,
+                    .author-name {
+                        a {
+                            font-style: normal;
+                            text-decoration: none;
+                        }
+                    }
+
+                    .author-title {
+                        font-size: 19px;
+                    }
+
+                    .author-name {
+                        display: inline;
+                        font-size: 14px;
+
+                        a {
+                            text-transform: capitalize;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     footer {
+        @include full-width();
+
         grid-row-start: 3;
         grid-row-end: 3;
         grid-column-start: 1;
         grid-column-end: 3;
+
+        .top-footer {
+            @include align();
+
+            height: 100%;
+            background-image: url(../images/nav.jpg);
+            background-position: center center;
+
+            > p {
+                color: rgba(255, 255, 255, 0.4);
+                font-size: 32px;
+                font-style: italic;
+
+                a {
+                    color: rgba(255, 255, 255, 0.7);
+                    font-style: normal;
+                }
+            }
+        }
     }
 }

@@ -1,6 +1,52 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+}
+body h1,
+body h2,
+body h3,
+body h4,
+body h5 {
+  margin: 0;
+  padding: 0;
+  font-family: "Julius Sans One";
+  color: #2e484c;
+  font-weight: 400;
+}
+body h1 {
+  font-size: 50px;
+}
+body h2 {
+  font-size: 25px;
+}
+body h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+body p {
+  margin: 12px 0;
+  font-size: 16px;
+  font-family: "Libre Baskerville";
+  padding: 0;
+  color: #325050;
+  line-height: 2;
+}
+body .green-section a {
+  color: #0d8ba1;
+}
+body a {
+  transition: color 0.3s;
+  text-transform: uppercase;
+  color: #325050;
+  text-decoration-style: dotted;
+}
+body a:hover {
+  color: #49968e;
 }
 
 body.body-wrapper {
@@ -11,35 +57,172 @@ body.body-wrapper {
   grid-template-rows: 300px 1fr 420px;
 }
 body.body-wrapper header {
+  width: 100vw;
   grid-row-start: 1;
   grid-row-end: 1;
   grid-column-start: 1;
   grid-column-end: 3;
-  width: 100%;
   height: 300px;
+  background-image: url(../images/nav.jpg);
+  background-position: center center;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+@media only screen and (min-width: 1400px) {
+  body.body-wrapper header {
+    margin-left: calc(((100vw - 1400px) / 2) * -1);
+  }
+}
+body.body-wrapper header .header-container {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+body.body-wrapper header .header-container .logo-wrapper {
+  margin-right: 30px;
+}
+body.body-wrapper header .header-container .page-title {
+  color: white;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+}
+body.body-wrapper header .header-container .page-subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: "Julius Sans One";
+  font-style: italic;
 }
 body.body-wrapper header div.logo-wrapper > img {
   width: 125px;
-  height: 125px;
+  height: auto;
 }
 body.body-wrapper div.page-container {
-  padding-right: 30%;
+  padding-right: 40%;
   grid-row-start: 2;
   grid-row-end: 2;
   grid-column-start: 1;
   grid-column-end: 3;
+}
+body.body-wrapper div.page-container section {
+  position: relative;
+}
+body.body-wrapper div.page-container section.green-section {
+  padding: 30px 0;
+}
+body.body-wrapper div.page-container section.green-section > div.background-container {
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  height: 100%;
+  background-color: rgba(138, 188, 159, 0.5);
+  background-image: url(../images/green-back.png);
+  background-attachment: fixed;
+}
+@media only screen and (min-width: 1400px) {
+  body.body-wrapper div.page-container section.green-section > div.background-container {
+    margin-left: calc(((100vw - 1400px) / 2) * -1);
+  }
+}
+body.body-wrapper div.page-container section article,
+body.body-wrapper div.page-container section .prequel {
+  padding: 10px;
+  margin: 20px 0;
+}
+body.body-wrapper div.page-container .prequel {
+  margin-top: 50px;
 }
 body.body-wrapper div.sidebar {
   grid-row-start: 1;
   grid-row-end: 4;
   grid-column-start: 2;
   grid-column-end: 2;
+  background-color: rgba(182, 212, 183, 0.2);
+}
+body.body-wrapper div.sidebar .top-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 300px;
+  padding: 40px;
+}
+body.body-wrapper div.sidebar .top-section span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  min-height: 70px;
+  background: rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  font-family: "Julius Sans One", sans-serif;
+  text-transform: uppercase;
+  color: white;
+  font-size: 19px;
+  border-radius: 3px;
+}
+body.body-wrapper div.sidebar .top-section span:nth-child(2) {
+  width: 30%;
+  margin-left: 2px;
+}
+body.body-wrapper div.sidebar .authors ul {
+  list-style: none;
+}
+body.body-wrapper div.sidebar .authors ul li {
+  font-style: italic;
+  color: #c0cac3;
+  padding: 20px 10px;
+}
+body.body-wrapper div.sidebar .authors ul li:not(:first-child) {
+  border-top: solid 1px #d9e3dc;
+}
+body.body-wrapper div.sidebar .authors ul li .author-title a,
+body.body-wrapper div.sidebar .authors ul li .author-name a {
+  font-style: normal;
+  text-decoration: none;
+}
+body.body-wrapper div.sidebar .authors ul li .author-title {
+  font-size: 19px;
+}
+body.body-wrapper div.sidebar .authors ul li .author-name {
+  display: inline;
+  font-size: 14px;
+}
+body.body-wrapper div.sidebar .authors ul li .author-name a {
+  text-transform: capitalize;
 }
 body.body-wrapper footer {
+  width: 100vw;
   grid-row-start: 3;
   grid-row-end: 3;
   grid-column-start: 1;
   grid-column-end: 3;
+}
+@media only screen and (min-width: 1400px) {
+  body.body-wrapper footer {
+    margin-left: calc(((100vw - 1400px) / 2) * -1);
+  }
+}
+body.body-wrapper footer .top-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+  background-image: url(../images/nav.jpg);
+  background-position: center center;
+}
+body.body-wrapper footer .top-footer > p {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 32px;
+  font-style: italic;
+}
+body.body-wrapper footer .top-footer > p a {
+  color: rgba(255, 255, 255, 0.7);
+  font-style: normal;
 }
 
 /*# sourceMappingURL=styles.css.map */
